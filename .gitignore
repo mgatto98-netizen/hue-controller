@@ -1,0 +1,12 @@
+venv/
+venv.zip
+build/
+dist/
+dist_compat/
+__pycache__/
+*.pyc
+*.pyo
+*.spec
+lg_env/
+*.egg-info/
+.env
