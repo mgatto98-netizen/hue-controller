@@ -10,3 +10,5 @@ __pycache__/
 lg_env/
 *.egg-info/
 .env
+*_config.json
+*.hue_controller_config*
