@@ -48,7 +48,3 @@ modules:
       - type: git
         url: https://github.com/mgatto98/hue-controller.git
         branch: main
-      - type: file
-        path: io.github.pipio.SistemaHue.desktop
-      - type: file
-        path: io.github.pipio.SistemaHue.png
