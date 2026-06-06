@@ -50,9 +50,3 @@ modules:
       - type: git
         url: https://github.com/mgatto98/hue-controller.git
         branch: main
-      - type: file
-        path: io.github.mgatto98.SistemaHue.desktop
-      - type: file
-        path: io.github.mgatto98.SistemaHue.png
-      - type: file
-        path: io.github.mgatto98.SistemaHue.metainfo.xml
