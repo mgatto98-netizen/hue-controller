@@ -1,0 +1,56 @@
+name: sistema-hue
+base: core22
+version: '1.0.0'
+summary: Controlador de luces Philips Hue para Linux
+description: |
+  Sistema Hue lets you control your Philips Hue lights from Linux.
+  Connect to your Hue bridge and manage all your rooms from a simple GTK interface.
+
+  - Turn rooms on and off individually
+  - Adjust brightness per room
+  - Sync lights with music playback
+  - Automatic bridge discovery on the local WiFi network
+
+grade: stable
+confinement: strict
+
+apps:
+  sistema-hue:
+    command: bin/sistema-hue
+    extensions:
+      - gnome
+    plugs:
+      - network
+      - home
+      - audio-playback
+
+parts:
+  sistema-hue:
+    plugin: python
+    source: https://github.com/mgatto98/hue-controller.git
+    source-branch: main
+    python-packages:
+      - requests
+      - sounddevice
+      - numpy
+      - python-mbedtls
+      - PyGObject
+    build-packages:
+      - libmbedtls-dev
+      - python3-dev
+      - libffi-dev
+      - libglib2.0-dev
+      - gobject-introspection
+      - libgirepository1.0-dev
+      - libcairo2-dev
+      - pkg-config
+    stage-packages:
+      - libmbedtls14
+      - libportaudio2
+      - gir1.2-gtk-3.0
+      - gir1.2-glib-2.0
+    override-build: |
+      craftctl build
+      install -Dm755 sistema_hue.py "$CRAFT_PART_INSTALL/bin/sistema-hue"
+      install -Dm644 io.github.mgatto98.SistemaHue.png \
+        "$CRAFT_PART_INSTALL/usr/share/icons/hicolor/256x256/apps/sistema-hue.png"
