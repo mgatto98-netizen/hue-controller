@@ -27,7 +27,7 @@ apps:
 parts:
   sistema-hue:
     plugin: python
-    source: https://github.com/mgatto98/hue-controller.git
+    source: https://github.com/mgatto98-netizen/hue-controller.git
     source-branch: main
     python-packages:
       - requests
