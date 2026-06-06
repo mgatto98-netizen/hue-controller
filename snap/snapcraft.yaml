@@ -34,15 +34,10 @@ parts:
       - sounddevice
       - numpy
       - python-mbedtls
-      - PyGObject
     build-packages:
       - libmbedtls-dev
       - python3-dev
       - libffi-dev
-      - libglib2.0-dev
-      - gobject-introspection
-      - libgirepository1.0-dev
-      - libcairo2-dev
       - pkg-config
     stage-packages:
       - libmbedtls14
