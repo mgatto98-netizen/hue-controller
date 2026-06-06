@@ -50,7 +50,7 @@ parts:
       - gir1.2-gtk-3.0
       - gir1.2-glib-2.0
     override-build: |
-      craftctl build
+      craftctl default
       install -Dm755 sistema_hue.py "$CRAFT_PART_INSTALL/bin/sistema-hue"
       install -Dm644 io.github.mgatto98.SistemaHue.png \
         "$CRAFT_PART_INSTALL/usr/share/icons/hicolor/256x256/apps/sistema-hue.png"
