@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.mgatto98.SistemaHue</id>
+
+  <name>Sistema Hue</name>
+  <name xml:lang="en">Hue System</name>
+
+  <summary>Controlador de luces Philips Hue para Linux</summary>
+  <summary xml:lang="en">Philips Hue lights controller for Linux</summary>
+
+  <description>
+    <p>
+      Sistema Hue permite controlar tus luces Philips Hue desde Linux.
+      Conectate al bridge Hue de tu red local y manejá todas tus habitaciones
+      y grupos de luces desde una interfaz simple.
+    </p>
+    <p xml:lang="en">
+      Sistema Hue lets you control your Philips Hue lights from Linux.
+      Connect to your local Hue bridge and manage all your rooms and
+      light groups from a simple interface.
+    </p>
+    <ul>
+      <li>Encendé y apagá habitaciones individualmente</li>
+      <li>Ajustá el brillo de cada habitación</li>
+      <li>Sincronizá las luces con la música que escuchás</li>
+      <li>Descubrimiento automático del bridge en la red WiFi</li>
+      <li>Título de la app personalizable</li>
+    </ul>
+    <ul xml:lang="en">
+      <li>Turn rooms on and off individually</li>
+      <li>Adjust brightness per room</li>
+      <li>Sync lights with music playback</li>
+      <li>Automatic bridge discovery on the local WiFi network</li>
+      <li>Customizable app title</li>
+    </ul>
+  </description>
+
+  <url type="homepage">https://github.com/mgatto98/hue-controller</url>
+  <url type="bugtracker">https://github.com/mgatto98/hue-controller/issues</url>
+
+  <launchable type="desktop-id">io.github.mgatto98.SistemaHue.desktop</launchable>
+
+  <screenshots>
+    <screenshot type="default">
+      <caption>Pantalla principal con habitaciones</caption>
+      <caption xml:lang="en">Main screen with rooms</caption>
+      <image>https://raw.githubusercontent.com/mgatto98/hue-controller/main/screenshot.png</image>
+    </screenshot>
+  </screenshots>
+
+  <releases>
+    <release version="1.0.0" date="2025-06-05">
+      <description>
+        <p>Primera versión pública.</p>
+        <p xml:lang="en">First public release.</p>
+      </description>
+    </release>
+  </releases>
+
+  <content_rating type="oars-1.1"/>
+
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+
+  <categories>
+    <category>Utility</category>
+    <category>HouseUtilities</category>
+  </categories>
+
+  <keywords>
+    <keyword>hue</keyword>
+    <keyword>philips</keyword>
+    <keyword>luces</keyword>
+    <keyword>lights</keyword>
+    <keyword>smarthome</keyword>
+  </keywords>
+
+  <developer id="io.github.mgatto98">
+    <name>mgatto98</name>
+  </developer>
+</component>
