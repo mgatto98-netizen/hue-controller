@@ -11,6 +11,7 @@ finish-args:
   - --device=dri
   - --socket=pulseaudio
   - --share=ipc
+  - --filesystem=home
 
 modules:
 
@@ -81,4 +82,4 @@ modules:
     sources:
       - type: git
         url: https://github.com/mgatto98/hue-controller.git
-        branch: main
+        commit: caaf1d2d42e6d349eb42ffcad3c80550262e5bc5
