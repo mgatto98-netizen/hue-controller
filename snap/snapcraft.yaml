@@ -63,6 +63,15 @@ parts:
 
   audio-libs:
     plugin: nil
-    stage-packages:
+    build-packages:
       - libportaudio2
       - pulseaudio-utils
+    override-build: |
+      mkdir -p "$CRAFT_PART_INSTALL/usr/lib/x86_64-linux-gnu"
+      mkdir -p "$CRAFT_PART_INSTALL/usr/bin"
+      cp -P /usr/lib/x86_64-linux-gnu/libportaudio.so.2* \
+        "$CRAFT_PART_INSTALL/usr/lib/x86_64-linux-gnu/" 2>/dev/null || true
+      cp /usr/bin/pactl "$CRAFT_PART_INSTALL/usr/bin/" 2>/dev/null || true
+    prime:
+      - usr/lib/x86_64-linux-gnu/libportaudio*
+      - usr/bin/pactl
