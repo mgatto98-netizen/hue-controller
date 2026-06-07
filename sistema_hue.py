@@ -2242,17 +2242,8 @@ class AppHueMejorada(Gtk.Window):
                         temperature_data = item.get('temperature', {})
                         temperature_celsius = temperature_data.get('temperature', 0)
                         
-                        temperature_report = temperature_data.get('temperature_report', {})
-                        if temperature_report:
-                            changed_str = temperature_report.get('changed', '')
-                            if changed_str:
-                                try:
-                                    last_changed = datetime.datetime.fromisoformat(changed_str.replace('Z', '+00:00'))
-                                    self.sensors[sensor_id]['last_updated'] = last_changed
-                                except:
-                                    self.sensors[sensor_id]['last_updated'] = datetime.datetime.now()
-                        
                         self.sensors[sensor_id]['temperature'] = temperature_celsius
+                        self.sensors[sensor_id]['last_updated'] = datetime.datetime.now()
                         updated = True
                 
                 if updated:
