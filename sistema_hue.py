@@ -121,7 +121,7 @@ class AppHueMejorada(Gtk.Window):
     
     def aplicar_estilos(self):
         """Aplica estilos CSS personalizados"""
-        css = b"""
+        css = """
         * {
             font-family: 'Segoe UI', 'Ubuntu', 'Cantarell', sans-serif;
         }
@@ -198,6 +198,7 @@ class AppHueMejorada(Gtk.Window):
         
         .habitacion-item {
             background-color: #34495e;
+            color: white;
             border-radius: 5px;
             padding: 5px;
             margin: 2px 0;
@@ -335,7 +336,7 @@ class AppHueMejorada(Gtk.Window):
         """
         
         style_provider = Gtk.CssProvider()
-        style_provider.load_from_data(css)
+        style_provider.load_from_data(css.encode('utf-8'))
         screen = Gdk.Screen.get_default()
         if screen is None:
             display = Gdk.Display.get_default()
