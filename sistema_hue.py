@@ -337,17 +337,17 @@ class AppHueMejorada(Gtk.Window):
         
         style_provider = Gtk.CssProvider()
         style_provider.load_from_data(css.encode('utf-8'))
-        screen = Gdk.Screen.get_default()
-        if screen is None:
-            display = Gdk.Display.get_default()
-            if display is not None:
-                screen = display.get_default_screen()
-        if screen is not None:
-            Gtk.StyleContext.add_provider_for_screen(
-                screen,
-                style_provider,
-                Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
-            )
+
+        def _apply_on_realize(widget):
+            screen = widget.get_screen()
+            if screen:
+                Gtk.StyleContext.add_provider_for_screen(
+                    screen,
+                    style_provider,
+                    Gtk.STYLE_PROVIDER_PRIORITY_USER
+                )
+
+        self.connect("realize", _apply_on_realize)
 
 
     def _actualizar_titulo_label(self):
