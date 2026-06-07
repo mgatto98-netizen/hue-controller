@@ -2243,7 +2243,7 @@ class AppHueMejorada(Gtk.Window):
                         temperature_celsius = temperature_data.get('temperature', 0)
                         
                         self.sensors[sensor_id]['temperature'] = temperature_celsius
-                        self.sensors[sensor_id]['last_updated'] = datetime.datetime.now()
+                        self.sensors[sensor_id]['last_updated'] = datetime.datetime.now().astimezone()
                         updated = True
                 
                 if updated:
