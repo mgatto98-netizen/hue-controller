@@ -336,29 +336,7 @@ class AppHueMejorada(Gtk.Window):
             background-image: none;
         }
 
-        .bateria-card-ok {
-            background-color: #27ae60;
-            background-image: none;
-            color: white;
-        }
-
-        .bateria-card-ok label { color: white; }
-
-        .bateria-card-media {
-            background-color: #e67e22;
-            background-image: none;
-            color: white;
-        }
-
-        .bateria-card-media label { color: white; }
-
-        .bateria-card-baja {
-            background-color: #c0392b;
-            background-image: none;
-            color: white;
-        }
-
-        .bateria-card-baja label { color: white; }
+        .bateria-card label { color: white; }
 
         .bateria-nivel {
             font-size: 22px;
@@ -1013,7 +991,6 @@ class AppHueMejorada(Gtk.Window):
 
         card = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=4)
         card.get_style_context().add_class("bateria-card")
-        card.get_style_context().add_class(css_class)
         card.set_size_request(150, -1)
 
         r, g, b = color[0], color[1], color[2]
