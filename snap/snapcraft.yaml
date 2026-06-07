@@ -1,6 +1,7 @@
 name: sistema-hue
 base: core22
 version: '1.0.0'
+title: Sistema Hue
 summary: Controlador de luces Philips Hue para Linux
 description: |
   Sistema Hue lets you control your Philips Hue lights from Linux.
@@ -13,6 +14,12 @@ description: |
 
 grade: stable
 confinement: strict
+license: GPL-3.0
+
+contact: https://github.com/mgatto98-netizen/hue-controller/issues
+issues: https://github.com/mgatto98-netizen/hue-controller/issues
+source-code: https://github.com/mgatto98-netizen/hue-controller
+website: https://github.com/mgatto98-netizen/hue-controller
 
 apps:
   sistema-hue:
