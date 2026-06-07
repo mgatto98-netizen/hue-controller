@@ -136,7 +136,8 @@ class AppHueMejorada(Gtk.Window):
         }
 
         .sidebar frame {
-            background-color: transparent;
+            background-color: #2c3e50;
+            background-image: none;
             border-color: rgba(255,255,255,0.2);
         }
 
@@ -146,6 +147,59 @@ class AppHueMejorada(Gtk.Window):
 
         .panel-derecho {
             background-color: #1e2b3a;
+        }
+
+        entry, entry:focus {
+            background-color: #2c3e50;
+            background-image: none;
+            color: white;
+        }
+
+        spinbutton {
+            background-color: #2c3e50;
+            background-image: none;
+            color: white;
+        }
+
+        spinbutton button {
+            background-color: #34495e;
+            background-image: none;
+            color: white;
+        }
+
+        .btn-conexion {
+            background-color: #34495e;
+            background-image: none;
+            color: white;
+            border: none;
+        }
+
+        .btn-conexion label { color: white; }
+
+        .btn-conexion:hover {
+            background-color: #3498db;
+            background-image: none;
+        }
+
+        .btn-baterias {
+            background-color: #34495e;
+            background-image: none;
+            color: white;
+        }
+
+        .btn-baterias label { color: white; }
+
+        .btn-baterias:hover {
+            background-color: #3498db;
+            background-image: none;
+        }
+
+        .info-panel {
+            background-color: #243447;
+        }
+
+        .info-panel label {
+            color: #90a8be;
         }
 
         .sidebar {
@@ -468,10 +522,12 @@ class AppHueMejorada(Gtk.Window):
         # Botones buscar + conectar
         btn_acciones = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=5)
         self.btn_buscar_bridge = Gtk.Button(label="🔍 Buscar")
+        self.btn_buscar_bridge.get_style_context().add_class("btn-conexion")
         self.btn_buscar_bridge.set_tooltip_text("Buscar bridge Hue en la red WiFi automáticamente")
         self.btn_buscar_bridge.connect("clicked", self.on_buscar_bridge_clicked)
         btn_acciones.pack_start(self.btn_buscar_bridge, True, True, 0)
         self.btn_conectar = Gtk.Button(label="🔌 Conectar")
+        self.btn_conectar.get_style_context().add_class("btn-conexion")
         self.btn_conectar.connect("clicked", self.on_conectar_clicked)
         btn_acciones.pack_start(self.btn_conectar, True, True, 0)
         btn_acciones.set_margin_bottom(5)
