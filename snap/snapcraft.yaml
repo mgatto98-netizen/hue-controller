@@ -19,6 +19,8 @@ apps:
     command: bin/sistema-hue
     extensions:
       - gnome
+    environment:
+      PYTHONPATH: $SNAP/usr/lib/python3/dist-packages:$SNAP/usr/lib/python3.10/dist-packages
     plugs:
       - network
       - home
@@ -44,6 +46,8 @@ parts:
       - libportaudio2
       - gir1.2-gtk-3.0
       - gir1.2-glib-2.0
+      - python3-gi
+      - python3-gi-cairo
     override-build: |
       craftctl default
       install -Dm755 sistema_hue.py "$CRAFT_PART_INSTALL/bin/sistema-hue"
