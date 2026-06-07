@@ -929,7 +929,7 @@ class AppHueMejorada(Gtk.Window):
                 if peor < 5:
                     color = (0.9, 0.15, 0.15)   # rojo
                 elif peor < 40:
-                    color = (0.95, 0.75, 0.1)   # amarillo
+                    color = (0.95, 0.85, 0.1)   # amarillo
                 else:
                     color = (0.2, 0.8, 0.2)     # verde
 
@@ -960,8 +960,8 @@ class AppHueMejorada(Gtk.Window):
                 card = self._crear_tarjeta_bateria(d)
                 self._bat_flowbox.add(card)
 
-            bajas = [d for d in datos if d['nivel'] < 20]
-            medias = [d for d in datos if 20 <= d['nivel'] < 50]
+            bajas = [d for d in datos if d['nivel'] < 5]
+            medias = [d for d in datos if 5 <= d['nivel'] < 40]
             resumen = f"<b>{len(datos)}</b> dispositivos"
             if bajas:
                 resumen += f" · <span foreground='#ff6b6b'><b>{len(bajas)} con batería baja</b></span>"
@@ -982,8 +982,8 @@ class AppHueMejorada(Gtk.Window):
             color_hex = "#c0392b"
         elif nivel < 40:
             css_class = "bateria-card-media"
-            color = (0.95, 0.75, 0.1)
-            color_hex = "#e67e22"
+            color = (0.95, 0.85, 0.1)
+            color_hex = "#f1c40f"
         else:
             css_class = "bateria-card-ok"
             color = (0.2, 0.8, 0.2)
