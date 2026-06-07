@@ -1012,12 +1012,18 @@ class AppHueMejorada(Gtk.Window):
         card = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=4)
         card.get_style_context().add_class("bateria-card")
         card.get_style_context().add_class(css_class)
-        card_provider = Gtk.CssProvider()
-        card_provider.load_from_data(
-            f"* {{ background-color: {color_hex}; background-image: none; color: white; }}".encode()
-        )
-        card.get_style_context().add_provider(card_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER)
         card.set_size_request(150, -1)
+
+        bg = Gdk.RGBA()
+        bg.red, bg.green, bg.blue, bg.alpha = color[0], color[1], color[2], 1.0
+
+        wrapper = Gtk.EventBox()
+        wrapper.override_background_color(Gtk.StateFlags.NORMAL, bg)
+        wrapper.set_margin_top(4)
+        wrapper.set_margin_bottom(4)
+        wrapper.set_margin_start(4)
+        wrapper.set_margin_end(4)
+        wrapper.add(card)
 
         # Fila superior: ícono Cairo + nivel
         fila_nivel = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
@@ -1060,7 +1066,7 @@ class AppHueMejorada(Gtk.Window):
         lbl_tipo.set_halign(Gtk.Align.CENTER)
         card.pack_start(lbl_tipo, False, False, 2)
 
-        return card
+        return wrapper
 
 
 
