@@ -2860,27 +2860,52 @@ class AppHueMejorada(Gtk.Window):
         """Lista fuentes de PulseAudio/PipeWire disponibles."""
         import subprocess as _sp
         fuentes = []
+
+        # Intentar con pactl (puede estar en distintos paths dentro del snap)
+        for pactl_bin in ['pactl', '/usr/bin/pactl']:
+            try:
+                out = _sp.run([pactl_bin, 'list', 'sources', 'short'],
+                              capture_output=True, text=True, timeout=3)
+                if out.returncode != 0:
+                    continue
+                for line in out.stdout.strip().splitlines():
+                    parts = [p for p in line.split('\t') if p.strip()]
+                    if len(parts) < 2:
+                        continue
+                    name = parts[1].strip()
+                    if not name:
+                        continue
+                    if name.endswith('.monitor'):
+                        base = name.replace('.monitor', '')
+                        short = base.split('.')[-2] if '.' in base else base
+                        label = f"🔊 {short} (monitor)"
+                    elif 'input' in name.lower() or 'analog' in name.lower():
+                        label = f"🎤 {name.split('.')[-1]}"
+                    else:
+                        label = f"📡 {name}"
+                    fuentes.append((name, label))
+                if fuentes:
+                    return fuentes
+            except Exception as e:
+                print(f"[AUDIO] pactl ({pactl_bin}) falló: {e}")
+
+        # Fallback: usar sounddevice para listar dispositivos de entrada
         try:
-            out = _sp.run(['pactl', 'list', 'sources', 'short'],
-                          capture_output=True, text=True, timeout=3).stdout
-            for line in out.strip().splitlines():
-                parts = [p for p in line.split('\t') if p.strip()]
-                if len(parts) < 2:
-                    continue
-                name = parts[1].strip()
-                if not name:
-                    continue
-                if name.endswith('.monitor'):
-                    base = name.replace('.monitor', '')
-                    short = base.split('.')[-2] if '.' in base else base
-                    label = f"🔊 {short} (monitor)"
-                elif 'input' in name.lower() or 'analog' in name.lower():
-                    label = f"🎤 {name.split('.')[-1]}"
-                else:
-                    label = f"📡 {name}"
-                fuentes.append((name, label))
+            import sounddevice as sd
+            devices = sd.query_devices()
+            for i, dev in enumerate(devices):
+                if dev['max_input_channels'] > 0:
+                    name = dev['name']
+                    if 'monitor' in name.lower():
+                        label = f"🔊 {name} (monitor)"
+                    elif 'input' in name.lower() or 'mic' in name.lower():
+                        label = f"🎤 {name}"
+                    else:
+                        label = f"📡 {name}"
+                    fuentes.append((str(i), label))
         except Exception as e:
-            print(f"[AUDIO] Error listando fuentes: {e}")
+            print(f"[AUDIO] sounddevice falló: {e}")
+
         return fuentes
 
     def _obtener_sink_inputs_activos(self):
@@ -3188,9 +3213,13 @@ class HueSyncManager:
         self._sender_thread.start()
 
         import sounddevice as sd
-        if source_name:
+        if source_name and not source_name.lstrip('-').isdigit():
+            # Nombre de fuente PulseAudio (pactl)
             os.environ['PULSE_SOURCE'] = source_name
             device = 'pulse'
+        elif source_name and source_name.lstrip('-').isdigit():
+            # Índice numérico de sounddevice (fallback)
+            device = int(source_name)
         else:
             device = device_idx
 
