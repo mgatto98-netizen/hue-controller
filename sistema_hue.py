@@ -332,6 +332,8 @@ class AppHueMejorada(Gtk.Window):
             padding: 12px;
             margin: 4px;
             border: 1px solid alpha(currentColor, 0.15);
+            background-color: transparent;
+            background-image: none;
         }
 
         .bateria-card-ok {
@@ -1014,11 +1016,17 @@ class AppHueMejorada(Gtk.Window):
         card.get_style_context().add_class(css_class)
         card.set_size_request(150, -1)
 
-        bg = Gdk.RGBA()
-        bg.red, bg.green, bg.blue, bg.alpha = color[0], color[1], color[2], 1.0
+        r, g, b = color[0], color[1], color[2]
 
         wrapper = Gtk.EventBox()
-        wrapper.override_background_color(Gtk.StateFlags.NORMAL, bg)
+        wrapper.set_app_paintable(True)
+
+        def _on_draw(widget, cr, _r=r, _g=g, _b=b):
+            cr.set_source_rgb(_r, _g, _b)
+            cr.paint()
+            return False
+
+        wrapper.connect("draw", _on_draw)
         wrapper.set_margin_top(4)
         wrapper.set_margin_bottom(4)
         wrapper.set_margin_start(4)
