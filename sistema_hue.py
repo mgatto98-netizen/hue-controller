@@ -999,16 +999,24 @@ class AppHueMejorada(Gtk.Window):
         if nivel < 5:
             css_class = "bateria-card-baja"
             color = (0.9, 0.15, 0.15)
+            color_hex = "#c0392b"
         elif nivel < 40:
             css_class = "bateria-card-media"
             color = (0.95, 0.75, 0.1)
+            color_hex = "#e67e22"
         else:
             css_class = "bateria-card-ok"
             color = (0.2, 0.8, 0.2)
+            color_hex = "#27ae60"
 
         card = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=4)
         card.get_style_context().add_class("bateria-card")
         card.get_style_context().add_class(css_class)
+        card_provider = Gtk.CssProvider()
+        card_provider.load_from_data(
+            f"* {{ background-color: {color_hex}; background-image: none; color: white; }}".encode()
+        )
+        card.get_style_context().add_provider(card_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER)
         card.set_size_request(150, -1)
 
         # Fila superior: ícono Cairo + nivel
