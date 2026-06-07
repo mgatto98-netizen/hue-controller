@@ -51,8 +51,6 @@ parts:
       - pkg-config
     stage-packages:
       - libmbedtls14
-      - libportaudio2
-      - pulseaudio-utils
       - gir1.2-gtk-3.0
       - gir1.2-glib-2.0
       - python3-gi
@@ -62,3 +60,9 @@ parts:
       install -Dm755 sistema_hue.py "$CRAFT_PART_INSTALL/bin/sistema-hue"
       install -Dm644 io.github.mgatto98.SistemaHue.png \
         "$CRAFT_PART_INSTALL/usr/share/icons/hicolor/256x256/apps/sistema-hue.png"
+
+  audio-libs:
+    plugin: nil
+    stage-packages:
+      - libportaudio2
+      - pulseaudio-utils
