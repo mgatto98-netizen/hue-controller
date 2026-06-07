@@ -962,11 +962,14 @@ class AppHueMejorada(Gtk.Window):
 
             bajas = [d for d in datos if d['nivel'] < 5]
             medias = [d for d in datos if 5 <= d['nivel'] < 40]
+            altas = [d for d in datos if d['nivel'] >= 40]
             resumen = f"<b>{len(datos)}</b> dispositivos"
             if bajas:
                 resumen += f" · <span foreground='#ff6b6b'><b>{len(bajas)} con batería baja</b></span>"
             if medias:
-                resumen += f" · <span foreground='#ffd93d'>{len(medias)} con batería media</span>"
+                resumen += f" · <span foreground='#f1c40f'>{len(medias)} con batería media</span>"
+            if altas:
+                resumen += f" · <span foreground='#27ae60'>{len(altas)} con batería alta</span>"
             self._bat_resumen.set_markup(resumen)
 
         self._bat_content_area.set_visible_child_name("baterias")
