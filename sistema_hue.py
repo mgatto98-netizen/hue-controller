@@ -125,7 +125,29 @@ class AppHueMejorada(Gtk.Window):
         * {
             font-family: 'Segoe UI', 'Ubuntu', 'Cantarell', sans-serif;
         }
-        
+
+        window, window > * {
+            background-color: #1e2b3a;
+            color: white;
+        }
+
+        .sidebar label, .sidebar > label {
+            color: white;
+        }
+
+        .sidebar frame {
+            background-color: transparent;
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        .sidebar frame > label {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .panel-derecho {
+            background-color: #1e2b3a;
+        }
+
         .sidebar {
             background-color: #2c3e50;
             padding: 10px;
@@ -554,6 +576,7 @@ class AppHueMejorada(Gtk.Window):
         
         # --- Panel derecho ---
         self.panel_derecho = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=15)
+        self.panel_derecho.get_style_context().add_class("panel-derecho")
         self.panel_derecho.set_margin_top(20)
         self.panel_derecho.set_margin_bottom(20)
         self.panel_derecho.set_margin_start(20)
