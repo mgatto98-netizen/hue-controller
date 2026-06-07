@@ -32,7 +32,6 @@ apps:
       - network
       - home
       - audio-playback
-      - audio-record
 
 parts:
   sistema-hue:
