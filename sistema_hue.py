@@ -133,6 +133,7 @@ class AppHueMejorada(Gtk.Window):
         
         .sidebar button {
             background-color: #34495e;
+            background-image: none;
             color: white;
             border: none;
             padding: 12px;
@@ -140,13 +141,23 @@ class AppHueMejorada(Gtk.Window):
             border-radius: 5px;
             font-size: 14px;
         }
-        
+
+        .sidebar button label {
+            color: white;
+        }
+
         .sidebar button:hover {
             background-color: #3498db;
+            background-image: none;
         }
-        
+
+        .sidebar button:hover label {
+            color: white;
+        }
+
         .sidebar button:active {
             background-color: #2980b9;
+            background-image: none;
         }
         
         .card-luz {
