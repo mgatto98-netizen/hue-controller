@@ -2861,12 +2861,21 @@ class AppHueMejorada(Gtk.Window):
         import subprocess as _sp
         fuentes = []
 
-        # Intentar con pactl (puede estar en distintos paths dentro del snap)
-        for pactl_bin in ['pactl', '/usr/bin/pactl']:
+        # Construir env con el socket de PulseAudio explícito (necesario dentro del snap)
+        env = dict(os.environ)
+        xdg = env.get('XDG_RUNTIME_DIR', f'/run/user/{os.getuid()}')
+        pulse_socket = f'{xdg}/pulse/native'
+        if os.path.exists(pulse_socket):
+            env['PULSE_SERVER'] = f'unix:{pulse_socket}'
+
+        snap_dir = env.get('SNAP', '')
+        for pactl_bin in [f'{snap_dir}/usr/bin/pactl', '/usr/bin/pactl', 'pactl']:
+            if not pactl_bin.strip('/'):
+                continue
             try:
                 out = _sp.run([pactl_bin, 'list', 'sources', 'short'],
-                              capture_output=True, text=True, timeout=3)
-                if out.returncode != 0:
+                              capture_output=True, text=True, timeout=3, env=env)
+                if out.returncode != 0 or not out.stdout.strip():
                     continue
                 for line in out.stdout.strip().splitlines():
                     parts = [p for p in line.split('\t') if p.strip()]
@@ -2889,7 +2898,7 @@ class AppHueMejorada(Gtk.Window):
             except Exception as e:
                 print(f"[AUDIO] pactl ({pactl_bin}) falló: {e}")
 
-        # Fallback: usar sounddevice para listar dispositivos de entrada
+        # Fallback: sounddevice
         try:
             import sounddevice as sd
             devices = sd.query_devices()
