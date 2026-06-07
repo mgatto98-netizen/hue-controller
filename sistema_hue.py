@@ -335,19 +335,28 @@ class AppHueMejorada(Gtk.Window):
         }
 
         .bateria-card-ok {
-            background: linear-gradient(135deg, #1a3a2a 0%, #1a3a1a 100%);
+            background-color: #27ae60;
+            background-image: none;
             color: white;
         }
+
+        .bateria-card-ok label { color: white; }
 
         .bateria-card-media {
-            background: linear-gradient(135deg, #3a3010 0%, #3a2a00 100%);
+            background-color: #e67e22;
+            background-image: none;
             color: white;
         }
 
+        .bateria-card-media label { color: white; }
+
         .bateria-card-baja {
-            background: linear-gradient(135deg, #3a1010 0%, #2a0a0a 100%);
+            background-color: #c0392b;
+            background-image: none;
             color: white;
         }
+
+        .bateria-card-baja label { color: white; }
 
         .bateria-nivel {
             font-size: 22px;
