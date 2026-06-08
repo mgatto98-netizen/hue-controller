@@ -23,7 +23,7 @@ website: https://github.com/mgatto98-netizen/hue-controller
 
 apps:
   sistema-hue:
-    command: bin/sistema-hue
+    command: bin/launcher
     extensions:
       - gnome
     environment:
@@ -60,6 +60,7 @@ parts:
     override-build: |
       craftctl default
       install -Dm755 sistema_hue.py "$CRAFT_PART_INSTALL/bin/sistema-hue"
+      install -Dm755 snap/local/launcher.sh "$CRAFT_PART_INSTALL/bin/launcher"
       install -Dm644 io.github.mgatto98.SistemaHue.png \
         "$CRAFT_PART_INSTALL/usr/share/icons/hicolor/256x256/apps/sistema-hue.png"
 
