@@ -587,14 +587,9 @@ class AppHueMejorada(Gtk.Window):
         fila_botones.pack_start(btn_dimmers, True, True, 0)
         self.sidebar.pack_start(fila_botones, False, False, 0)
 
-        btn_musica = Gtk.Button(label="🎵 Música")
-        btn_musica.set_tooltip_text("Sincronizar luces con la música")
-        btn_musica.get_style_context().add_class("btn-baterias")
-        btn_musica.set_margin_start(10)
-        btn_musica.set_margin_end(10)
-        btn_musica.set_margin_bottom(2)
-        btn_musica.connect("clicked", self.on_musica_clicked)
-        self.sidebar.pack_start(btn_musica, False, False, 0)
+        # btn_musica oculto hasta resolver captura de audio en snap
+        # btn_musica = Gtk.Button(label="🎵 Música")
+        # self.sidebar.pack_start(btn_musica, False, False, 0)
 
         # Configuración de intervalo de actualización (compacta, al fondo)
         config_row = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=5)
