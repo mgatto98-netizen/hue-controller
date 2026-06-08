@@ -3222,20 +3222,32 @@ class HueSyncManager:
         self._sender_thread.start()
 
         import sounddevice as sd
+
+        # Asegurar que PULSE_SERVER apunte al socket local (necesario dentro del snap)
+        xdg = os.environ.get('XDG_RUNTIME_DIR', f'/run/user/{os.getuid()}')
+        pulse_socket = f'{xdg}/pulse/native'
+        if os.path.exists(pulse_socket):
+            os.environ['PULSE_SERVER'] = f'unix:{pulse_socket}'
+
         if source_name and not source_name.lstrip('-').isdigit():
-            # Nombre de fuente PulseAudio (pactl)
             os.environ['PULSE_SOURCE'] = source_name
             device = 'pulse'
         elif source_name and source_name.lstrip('-').isdigit():
-            # Índice numérico de sounddevice (fallback)
             device = int(source_name)
         else:
             device = device_idx
 
+        # Detectar canales soportados por el dispositivo
+        try:
+            dev_info = sd.query_devices(device, 'input')
+            channels = min(2, int(dev_info['max_input_channels']))
+        except Exception:
+            channels = 1
+
         self._stream = sd.InputStream(
             samplerate=self.SAMPLERATE,
             blocksize=self.BLOCKSIZE,
-            channels=2,
+            channels=channels,
             dtype='float32',
             device=device,
             callback=self._audio_callback,
@@ -3258,8 +3270,9 @@ class HueSyncManager:
         self._peak = max(self._peak * 0.995, rms)
         brightness = min(1.0, rms / self._peak)
 
-        # FFT
-        mono  = indata[:, 0] * np.hanning(len(indata[:, 0]))
+        # FFT (compatible con mono y stereo)
+        mono  = indata[:, 0] if indata.ndim > 1 and indata.shape[1] > 0 else indata.flatten()
+        mono  = mono * np.hanning(len(mono))
         fft   = np.abs(np.fft.rfft(mono))
         freqs = np.fft.rfftfreq(len(mono), 1.0 / self.SAMPLERATE)
 
