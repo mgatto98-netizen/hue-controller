@@ -3230,14 +3230,16 @@ class HueSyncManager:
             os.environ['PULSE_SERVER'] = f'unix:{pulse_socket}'
 
         if source_name and not source_name.lstrip('-').isdigit():
+            # Nombre PulseAudio: setear PULSE_SOURCE y usar device=None
+            # (evitar device='pulse' — el plugin ALSA 'pulse' crashea en snap)
             os.environ['PULSE_SOURCE'] = source_name
-            device = 'pulse'
+            device = None
         elif source_name and source_name.lstrip('-').isdigit():
             device = int(source_name)
         else:
             device = device_idx
 
-        # Detectar canales soportados por el dispositivo
+        # Detectar canales del dispositivo de entrada por defecto
         try:
             dev_info = sd.query_devices(device, 'input')
             channels = min(2, int(dev_info['max_input_channels']))
