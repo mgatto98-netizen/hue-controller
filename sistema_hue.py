@@ -1241,15 +1241,46 @@ class AppHueMejorada(Gtk.Window):
         try:
             url = f"https://{self.bridge_ip}/clip/v2/resource/device"
             response = requests.get(url, headers=self.headers, verify=False, timeout=10)
-            
+
             if response.status_code == 200:
                 GLib.idle_add(self.conexion_exitosa)
             else:
                 GLib.idle_add(self.solicitar_registro)
+        except requests.exceptions.Timeout:
+            print(f"Error probando conexión: timeout")
+            GLib.idle_add(self._error_red,
+                f"El puente no responde ({self.bridge_ip}). ¿Está encendido?")
+        except requests.exceptions.ConnectionError as e:
+            msg = str(e)
+            if "Connection refused" in msg or "[Errno 111]" in msg:
+                detalle = (f"El puente en {self.bridge_ip} rechaza la conexión. "
+                           "Verifica que la IP sea correcta.")
+            else:
+                detalle = (f"No se puede alcanzar {self.bridge_ip}. "
+                           "Verifica que el puente esté encendido y en la misma red WiFi.")
+            print(f"Error probando conexión: {e}")
+            GLib.idle_add(self._error_red, detalle)
         except Exception as e:
             print(f"Error probando conexión: {e}")
             GLib.idle_add(self.solicitar_registro)
-    
+
+    def _error_red(self, mensaje):
+        """Muestra un error de red al intentar conectar"""
+        self.spinner.stop()
+        self.btn_conectar.set_sensitive(True)
+        self.label_estado.set_markup(
+            f"<span foreground='red'>❌ {GLib.markup_escape_text(mensaje)}</span>")
+        dialog = Gtk.MessageDialog(
+            transient_for=self,
+            flags=0,
+            message_type=Gtk.MessageType.ERROR,
+            buttons=Gtk.ButtonsType.OK,
+            text="Error de conexión"
+        )
+        dialog.format_secondary_text(mensaje)
+        dialog.run()
+        dialog.destroy()
+
     def solicitar_registro(self):
         """Solicita al usuario que presione el botón del puente"""
         self.label_estado.set_markup("<span foreground='orange'>⚠️ Presiona el botón físico del puente Hue</span>")
