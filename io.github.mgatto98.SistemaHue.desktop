@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Pupu
-Comment=Controlador de luces inteligentes para Linux
+Comment=Controlador de luces del sistema Philips Hue para Linux
 Exec=pupu
 Icon=io.github.mgatto98.SistemaHue
 Terminal=false

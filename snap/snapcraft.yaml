@@ -2,15 +2,15 @@ name: pupu
 base: core22
 version: '1.0.0'
 title: Pupu
-summary: Controlador de luces inteligentes para Linux
+summary: Controller for Philips Hue lights on Linux
 description: |
-  Pupu lets you control your smart lights from Linux.
-  Connect to your bridge and manage all your rooms from a simple GTK interface.
+  Pupu es una aplicación para controlar las luces del sistema Philips Hue desde Linux.
+  Conéctate a tu puente Hue y gestiona todas tus habitaciones desde una interfaz GTK sencilla.
 
-  - Turn rooms on and off individually
-  - Adjust brightness per room
-  - Sync lights with music playback
-  - Automatic bridge discovery on the local WiFi network
+  - Enciende y apaga habitaciones individualmente
+  - Ajusta el brillo por habitación
+  - Sincroniza las luces con la reproducción de música
+  - Descubrimiento automático del puente en la red WiFi
 
 grade: stable
 confinement: strict
