@@ -63,6 +63,10 @@ parts:
       install -Dm755 snap/local/launcher.sh "$CRAFT_PART_INSTALL/bin/launcher"
       install -Dm644 io.github.mgatto98.SistemaHue.png \
         "$CRAFT_PART_INSTALL/usr/share/icons/hicolor/256x256/apps/pupu.png"
+      install -Dm644 io.github.mgatto98.SistemaHue.desktop \
+        "$CRAFT_PART_INSTALL/usr/share/applications/io.github.mgatto98.SistemaHue.desktop"
+      install -Dm644 io.github.mgatto98.SistemaHue.metainfo.xml \
+        "$CRAFT_PART_INSTALL/usr/share/metainfo/io.github.mgatto98.SistemaHue.metainfo.xml"
 
   audio-libs:
     plugin: nil

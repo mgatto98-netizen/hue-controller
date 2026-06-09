@@ -2,54 +2,44 @@
 <component type="desktop-application">
   <id>io.github.mgatto98.SistemaHue</id>
 
-  <name>Sistema Hue</name>
-  <name xml:lang="en">Hue System</name>
+  <name>Pupu</name>
+  <name xml:lang="en">Pupu</name>
 
-  <summary>Controlador de luces Philips Hue para Linux</summary>
-  <summary xml:lang="en">Philips Hue lights controller for Linux</summary>
+  <summary>Controlador de luces del sistema Philips Hue para Linux</summary>
+  <summary xml:lang="en">Controller for Philips Hue lights on Linux</summary>
 
   <description>
     <p>
-      Sistema Hue permite controlar tus luces Philips Hue desde Linux.
+      Pupu permite controlar tus luces del sistema Philips Hue desde Linux.
       Conectate al bridge Hue de tu red local y manejá todas tus habitaciones
-      y grupos de luces desde una interfaz simple.
+      desde una interfaz simple.
     </p>
     <p xml:lang="en">
-      Sistema Hue lets you control your Philips Hue lights from Linux.
-      Connect to your local Hue bridge and manage all your rooms and
-      light groups from a simple interface.
+      Pupu lets you control your Philips Hue lights from Linux.
+      Connect to your local Hue bridge and manage all your rooms
+      from a simple interface.
     </p>
     <ul>
       <li>Encendé y apagá habitaciones individualmente</li>
       <li>Ajustá el brillo de cada habitación</li>
       <li>Sincronizá las luces con la música que escuchás</li>
       <li>Descubrimiento automático del bridge en la red WiFi</li>
-      <li>Título de la app personalizable</li>
     </ul>
     <ul xml:lang="en">
       <li>Turn rooms on and off individually</li>
       <li>Adjust brightness per room</li>
       <li>Sync lights with music playback</li>
       <li>Automatic bridge discovery on the local WiFi network</li>
-      <li>Customizable app title</li>
     </ul>
   </description>
 
-  <url type="homepage">https://github.com/mgatto98/hue-controller</url>
-  <url type="bugtracker">https://github.com/mgatto98/hue-controller/issues</url>
+  <url type="homepage">https://github.com/mgatto98-netizen/hue-controller</url>
+  <url type="bugtracker">https://github.com/mgatto98-netizen/hue-controller/issues</url>
 
   <launchable type="desktop-id">io.github.mgatto98.SistemaHue.desktop</launchable>
 
-  <screenshots>
-    <screenshot type="default">
-      <caption>Pantalla principal con habitaciones</caption>
-      <caption xml:lang="en">Main screen with rooms</caption>
-      <image>https://raw.githubusercontent.com/mgatto98/hue-controller/main/screenshot.png</image>
-    </screenshot>
-  </screenshots>
-
   <releases>
-    <release version="1.0.0" date="2026-06-05">
+    <release version="1.0.0" date="2026-06-09">
       <description>
         <p>Primera versión pública.</p>
         <p xml:lang="en">First public release.</p>
