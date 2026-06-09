@@ -1,11 +1,11 @@
-name: sistema-hue
+name: pupu
 base: core22
 version: '1.0.0'
-title: Sistema Hue
-summary: Controlador de luces Philips Hue para Linux
+title: Pupu
+summary: Controlador de luces inteligentes para Linux
 description: |
-  Sistema Hue lets you control your Philips Hue lights from Linux.
-  Connect to your Hue bridge and manage all your rooms from a simple GTK interface.
+  Pupu lets you control your smart lights from Linux.
+  Connect to your bridge and manage all your rooms from a simple GTK interface.
 
   - Turn rooms on and off individually
   - Adjust brightness per room
@@ -22,7 +22,7 @@ source-code: https://github.com/mgatto98-netizen/hue-controller
 website: https://github.com/mgatto98-netizen/hue-controller
 
 apps:
-  sistema-hue:
+  pupu:
     command: bin/launcher
     extensions:
       - gnome
@@ -37,7 +37,7 @@ apps:
       - audio-playback
 
 parts:
-  sistema-hue:
+  pupu:
     plugin: python
     source: https://github.com/mgatto98-netizen/hue-controller.git
     source-branch: main
@@ -59,10 +59,10 @@ parts:
       - python3-gi-cairo
     override-build: |
       craftctl default
-      install -Dm755 sistema_hue.py "$CRAFT_PART_INSTALL/bin/sistema-hue"
+      install -Dm755 sistema_hue.py "$CRAFT_PART_INSTALL/bin/pupu"
       install -Dm755 snap/local/launcher.sh "$CRAFT_PART_INSTALL/bin/launcher"
       install -Dm644 io.github.mgatto98.SistemaHue.png \
-        "$CRAFT_PART_INSTALL/usr/share/icons/hicolor/256x256/apps/sistema-hue.png"
+        "$CRAFT_PART_INSTALL/usr/share/icons/hicolor/256x256/apps/pupu.png"
 
   audio-libs:
     plugin: nil

@@ -1,9 +1,9 @@
 [Desktop Entry]
-Name=Sistema Hue
-Comment=Controlador de luces Philips Hue para Linux
-Exec=sistema-hue
+Name=Pupu
+Comment=Controlador de luces inteligentes para Linux
+Exec=pupu
 Icon=io.github.mgatto98.SistemaHue
 Terminal=false
 Type=Application
 Categories=Utility;
-Keywords=hue;philips;luces;lights;smart;home;
+Keywords=luces;lights;smart;home;

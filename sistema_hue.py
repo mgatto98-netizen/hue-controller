@@ -63,13 +63,13 @@ class AppHueMejorada(Gtk.Window):
         self.update_timer = None
         
         # Archivo de configuración
-        self.config_file = os.path.expanduser("~/.hue_controller_config.json")
+        self.config_file = os.path.expanduser("~/.pupu_config.json")
         self.config = self.cargar_configuracion()
         
         if "update_interval" in self.config:
             self.update_interval = self.config["update_interval"]
 
-        titulo_app = self.config.get("titulo_app", "Sistema Hue")
+        titulo_app = self.config.get("titulo_app", "Pupu")
         self.set_title(titulo_app)
 
         # Estilo CSS
@@ -92,10 +92,10 @@ class AppHueMejorada(Gtk.Window):
             "bridge_ip": "",
             "api_key": "",
             "update_interval": 300,
-            "app_name": "hue_controller_linux",
+            "app_name": "pupu_linux",
             "ent_username": "",
             "ent_clientkey": "",
-            "titulo_app": "Sistema Hue"
+            "titulo_app": "Pupu"
         }
         
         try:
@@ -427,7 +427,7 @@ class AppHueMejorada(Gtk.Window):
 
 
     def _actualizar_titulo_label(self):
-        titulo = self.config.get("titulo_app", "Sistema Hue")
+        titulo = self.config.get("titulo_app", "Pupu")
         self.titulo_label.set_markup(f"<span size='x-large' weight='bold'>🏠 {titulo}</span>")
 
     def on_cambiar_titulo_clicked(self, widget):
@@ -445,7 +445,7 @@ class AppHueMejorada(Gtk.Window):
         content.add(lbl)
 
         entry = Gtk.Entry()
-        entry.set_text(self.config.get("titulo_app", "Sistema Hue"))
+        entry.set_text(self.config.get("titulo_app", "Pupu"))
         entry.set_activates_default(True)
         content.add(entry)
 
@@ -1320,7 +1320,7 @@ class AppHueMejorada(Gtk.Window):
     def registrar_aplicacion(self):
         """Registra la aplicación en el puente Hue (obtiene api_key y entertainment key en un solo paso)"""
         try:
-            app_name = self.config.get("app_name", "hue_controller_linux")
+            app_name = self.config.get("app_name", "pupu_linux")
             url = f"https://{self.bridge_ip}/api"
             data = {"devicetype": app_name, "generateclientkey": True}
 

@@ -21,4 +21,4 @@ if [ -n "$GTK_PATH" ]; then
     export GTK_PATH="$_new"
 fi
 
-exec "$SNAP/bin/sistema-hue" "$@"
+exec "$SNAP/bin/pupu" "$@"
