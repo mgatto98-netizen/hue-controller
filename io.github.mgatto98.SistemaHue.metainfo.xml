@@ -39,6 +39,12 @@
   <launchable type="desktop-id">io.github.mgatto98.SistemaHue.desktop</launchable>
 
   <releases>
+    <release version="1.0.1" date="2026-06-09">
+      <description>
+        <p>Mejoras en mensajes de error de conexión y metadatos para tiendas de software.</p>
+        <p xml:lang="en">Improved connection error messages and software store metadata.</p>
+      </description>
+    </release>
     <release version="1.0.0" date="2026-06-09">
       <description>
         <p>Primera versión pública.</p>
