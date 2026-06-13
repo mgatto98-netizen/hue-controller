@@ -1,6 +1,6 @@
 name: pupu
 base: core22
-version: '1.0.1'
+version: '1.0.2'
 title: Pupu
 summary: Controller for Philips Hue lights on Linux
 description: |
@@ -24,6 +24,7 @@ website: https://github.com/mgatto98-netizen/hue-controller
 apps:
   pupu:
     command: bin/launcher
+    desktop: usr/share/applications/io.github.mgatto98.SistemaHue.desktop
     extensions:
       - gnome
     environment:
@@ -62,7 +63,7 @@ parts:
       install -Dm755 sistema_hue.py "$CRAFT_PART_INSTALL/bin/pupu"
       install -Dm755 snap/local/launcher.sh "$CRAFT_PART_INSTALL/bin/launcher"
       install -Dm644 io.github.mgatto98.SistemaHue.png \
-        "$CRAFT_PART_INSTALL/usr/share/icons/hicolor/256x256/apps/pupu.png"
+        "$CRAFT_PART_INSTALL/usr/share/icons/hicolor/256x256/apps/io.github.mgatto98.SistemaHue.png"
       install -Dm644 io.github.mgatto98.SistemaHue.desktop \
         "$CRAFT_PART_INSTALL/usr/share/applications/io.github.mgatto98.SistemaHue.desktop"
       install -Dm644 io.github.mgatto98.SistemaHue.metainfo.xml \

@@ -12,3 +12,10 @@ lg_env/
 .env
 *_config.json
 *.hue_controller_config*
+
+# Snapcraft build output
+parts/
+stage/
+prime/
+*.snap
+snapcraft-*.txt
