@@ -1,4 +1,4 @@
-name: Build Snap
+name: Build and Publish Snap
 
 on:
   push:
@@ -21,3 +21,11 @@ jobs:
           name: pupu-snap
           path: ${{ steps.build.outputs.snap }}
           retention-days: 7
+
+      - name: Publish to Snap Store
+        uses: snapcore/action-publish@v1
+        env:
+          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAP_STORE_LOGIN }}
+        with:
+          snap: ${{ steps.build.outputs.snap }}
+          release: stable
